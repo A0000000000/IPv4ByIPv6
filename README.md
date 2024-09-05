@@ -1,7 +1,7 @@
 # IPv4ByIPv6
 * 借助公网IPv6来实现内网IPv4组网
 * 对项目[LocalIPv4UseIPv6](https://github.com/A0000000000/LocalIPv4UseIPv6)的重构
-* 使用了TUN网卡来代理TCP报文流量
+* 使用了TUN网卡来代理IP报文流量
 
 # 相对之前项目的改进
 * 移除全部三方依赖，全部使用go内置库实现
