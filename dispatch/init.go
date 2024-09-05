@@ -87,7 +87,7 @@ func (ctx *DispatchContext) readFromTun() {
 				// IPv4 报文
 				ipv4 := data[16:20]
 				clientCtx, has := ctx.clientCtxCache[uint32(ipv4[3])]
-				if has && clientCtx != nil {
+				if has && clientCtx != nil && clientCtx.IsConnected() {
 					clientCtx.SendDataToServerDefault(data)
 				} else {
 					err, cfg, has := ctx.configCtx.QueryIPv6Address(uint32(ipv4[3]))
