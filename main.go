@@ -13,7 +13,7 @@ import (
 func main() {
 	checkPermission()
 	if len(os.Args) > 2 {
-		panic("参数错误.")
+		panic("wrong args count.")
 	}
 	var configCtx *config.ConfigContext = nil
 	var err error = nil
