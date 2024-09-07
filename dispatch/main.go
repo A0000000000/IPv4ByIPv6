@@ -66,7 +66,6 @@ func (ctx *DispatchContext) readFromTun() {
 				// 出错忽略
 				continue
 			}
-
 			// 获取IPv4 头大小及整体大小
 			//headerSize := uint32(data[0]&0xF) * 4
 			//log.Println("headerSize = ", headerSize)
@@ -93,9 +92,8 @@ func (ctx *DispatchContext) readFromTun() {
 					}
 				}
 			} else {
-				// IPv6 报文
+				// 其他 报文
 				// ignore
-				//log.Println("IPv6")
 			}
 			ctx.mutexRead.Unlock()
 		}
