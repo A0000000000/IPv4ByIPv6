@@ -66,24 +66,13 @@ func (ctx *DispatchContext) readFromTun() {
 				// 出错忽略
 				continue
 			}
-			/*
-				// 获取IPv4 头大小及整体大小
-				headerSize := uint32(0x1 & (data[0] >> 3))
-				headerSize = headerSize << 1
-				headerSize += uint32(0x1 & (data[0] >> 2))
-				headerSize = headerSize << 1
-				headerSize += uint32(0x1 & (data[0] >> 1))
-				headerSize = headerSize << 1
-				headerSize += uint32(0x1 & (data[0] >> 0))
-				headerSize *= 4
-				log.Println("header size = ", headerSize)
-				payloadSize1 := data[2]
-				payloadSize2 := data[3]
-				payloadSize := uint32(payloadSize1)
-				payloadSize = payloadSize<<8 + uint32(payloadSize2)
-				log.Println("payloadSize1 = ", payloadSize1, ", payloadSize2 = ", payloadSize2, ", payloadSize = ", payloadSize)
-			*/
-			if (data[0]>>7)&0x1 == 0 && (data[0]>>6)&0x1 == 1 && (data[0]>>5)&0x1 == 0 && (data[0]>>4)&0x1 == 0 {
+
+			// 获取IPv4 头大小及整体大小
+			//headerSize := uint32(data[0]&0xF) * 4
+			//log.Println("headerSize = ", headerSize)
+			//payloadSize := uint32(data[2])<<8 + uint32(data[3]) - headerSize
+			//log.Println("headerSize = ", headerSize, ", payloadSize = ", payloadSize)
+			if (data[0] >> 4) == 0x4 {
 				// IPv4 报文
 				ipv4 := data[16:20]
 				clientCtx, has := ctx.clientCtxCache[uint32(ipv4[3])]
