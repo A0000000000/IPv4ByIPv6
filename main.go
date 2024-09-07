@@ -11,12 +11,15 @@ import (
 )
 
 func main() {
-	checkPermission()
+	var err error = nil
+	err = checkPermission()
+	if err != nil {
+		panic(err)
+	}
 	if len(os.Args) > 2 {
 		panic("wrong args count.")
 	}
 	var configCtx *config.ConfigContext = nil
-	var err error = nil
 	if len(os.Args) <= 1 {
 		err, configCtx = config.GenConfigContext()
 		if err == nil {

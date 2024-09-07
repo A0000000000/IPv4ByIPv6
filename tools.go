@@ -1,17 +1,18 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"runtime"
 )
 
-func checkPermission() {
+func checkPermission() error {
 	currentOS := runtime.GOOS
 	if currentOS == "linux" && os.Getuid() != 0 {
-		panic("本程序需要root身份运行.")
+		return errors.New("this program need root role.")
 	}
 	if currentOS != "linux" {
-		panic("暂不支持Linux以外的系统.")
+		return errors.New("only support linux os.")
 	}
-
+	return nil
 }
