@@ -213,6 +213,7 @@ func (ctx *ClientContext) write(data []byte) error {
 			return err
 		}
 		size -= n
+		data = data[n:]
 	}
 	ctx.mutexWrite.Unlock()
 	return nil
